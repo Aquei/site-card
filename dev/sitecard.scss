@@ -1,0 +1,49 @@
+.site-card{
+	align-items:center;
+	display:flex;
+
+	.image-container, .text-container{
+		float:left;
+	}
+
+	.image-container{
+		//width:84px;
+		padding:0 10px;
+
+		img{
+			display:block;
+			width:64px;
+		}
+	}
+
+	.text-container{
+
+		flex:1;
+
+		h4{
+			margin:0;
+
+			a{
+				text-decoration:none;
+
+				&:active, &:hover{
+					text-decoration:underline;
+				}
+			}
+		}
+
+		p.description{
+			margin:0;
+			padding:0.5em 0;
+		}
+
+
+		.misc{
+			font-size:0.75em;
+			
+			.net-location{
+				opacity:0.6;
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+<!-- 依存 -->
+<link href="https://www.srytk.com/h/wc/normalize-css/normalize-css.html" rel="import"><!-- 必要ならuncomment -->
+
+<!-- body -->
+<template>
+	<normalize-css prefix=".site-card"></normalize-css>
+	<link href="./sitecard.css" rel="stylesheet" inline>
+	<div class="site-card">
+		<div class="image-container">
+			<a href="" class="site-link">
+				<img is="img-resp" max-width="256" sizes="64px">
+			</a>
+		</div>
+		<div class="text-container">
+			<h4 class="site-title"><a class="site-link"></a></h4>
+			<p class="description"></p>
+			<div class="misc">
+				<span class="published-date"></span>
+				<span><img class="favicon"></span>
+				<span class="net-location"></span>
+			</div>
+		</div>
+
+	</div>
+
+</template>
+<!-- uncache -->
+<script src="./sitecard.js"></script>
+<!-- enduncache -->
+
