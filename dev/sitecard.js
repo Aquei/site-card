@@ -6,8 +6,11 @@
 		, SiteCard;
 
 
-	Proto.createdCallback = createdCallback; 
+	Proto.createdCallback = createdCallback;
+	//attrName, oldVal, newVal
+	Proto.attributeChangedCallback = attributeChangedCallback;
 	Proto.update = update;
+	Proto.updatePublishDate = updatePublishDate;
 
 
 	//登録
@@ -33,10 +36,23 @@
 		root.appendChild(clone);
 
 		this.update();
+		this.updatePublishDate();
 
 		return this;
 	}
 
+
+	function updatePublishDate(){
+		var publishedDate = this.getAttribute("published-date")
+			, elem = this.shadowRoot.querySelector(".published-date");
+
+		//update pub date
+		if(publishedDate && moment){
+			elem.textContent = moment(publishedDate).format("LL");
+		}else{
+			elem.textContent = "";
+		}
+	}
 
 
 	function update(){
@@ -92,7 +108,6 @@
 					,url
 					,title
 					,desc
-					,publishedDate
 					,anc = document.createElement("a")
 					,cache = {}
 					,root = that.shadowRoot;
@@ -134,7 +149,6 @@
 					url = that.getAttribute("url");
 				}
 
-				publishedDate = that.getAttribute("published-date");
 
 
 				//update image
@@ -155,11 +169,6 @@
 					cache.links[i].setAttribute("href", url);
 				}
 
-				//update pub date
-				if(publishedDate){
-					cache.publishedDate = root.querySelector(".published-date");
-					cache.publishedDate.textContent = moment(publishedDate).format("LL");
-				}
 
 				//update favicon, host
 				anc.href = that.getAttribute("url");
@@ -183,6 +192,18 @@
 		}
 
 
+	}
+
+	function attributeChangedCallback(attrName, oldVal, newVal){
+		switch(attrName){
+			case "published-date":
+				this.updatePublishDate();
+				break;
+
+			case "url":
+				this.update();
+				break;
+		}
 	}
 
 
