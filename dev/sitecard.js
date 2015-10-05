@@ -69,7 +69,7 @@
 				, reqURL
 				, async = true;
 
-			if(typeof url === "undefined" || url.toString.indexOf("http") !== 0){
+			if(typeof url === "undefined" || url.toString().indexOf("http") !== 0){
 				return;
 			}
 
