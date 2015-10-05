@@ -69,7 +69,7 @@
 				, reqURL
 				, async = true;
 
-			if(typeof url === "undefined"){
+			if(typeof url === "undefined" || url.toString.indexOf("http") !== 0){
 				return;
 			}
 
@@ -117,7 +117,7 @@
 				}else if(meta["twitter:image"]){
 					imageUrl = meta["twitter:image"];
 				}else{
-					imageUrl = "https://pixabay.com/static/uploads/photo/2012/04/10/23/44/question-27106_640.png";
+					imageUrl = "https://i.imgur.com/DReqqAW.png";
 				}
 
 				if(meta["og:title"]){
