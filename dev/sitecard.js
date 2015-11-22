@@ -117,7 +117,7 @@
 				}else if(meta["twitter:image"]){
 					imageUrl = meta["twitter:image"];
 				}else{
-					imageUrl = "https://i.imgur.com/DReqqAW.png";
+					imageUrl = "http://i.imgur.com/DReqqAW.png";
 				}
 
 				if(meta["og:title"]){
