@@ -69,11 +69,14 @@
 				, reqURL
 				, async = true;
 
-			if(typeof url === "undefined" || url.toString().indexOf("http") !== 0){
+
+			console.log("reqest call");
+			if(url === null || url === "" || url.toString().indexOf("http") !== 0){
 				return;
 			}
 
 			if(xhr && !(xhr.readyState === 0 || xhr.readyState === 4)){
+				console.log("既存のリクエストを中止");
 				xhr.abort();
 			};
 
@@ -84,6 +87,8 @@
 			xhr.open(method
 					, reqURL
 					, async);
+
+			console.log("リクエスト準備完了");
 
 			return new Promise(function(resolve, reject){
 				xhr.onload = function(){
@@ -98,6 +103,7 @@
 					reject("network error");
 				};
 
+				console.log("リクエスト開始");
 				xhr.send();
 
 			}).then(function(res){
@@ -171,12 +177,14 @@
 
 
 				//update favicon, host
-				anc.href = that.getAttribute("url");
-				cache.favicon = root.querySelector(".favicon");
-				cache.favicon.setAttribute("src", "https://www.google.com/s2/favicons?domain=" + anc.host);
+				if(url && url.toLowerCase().indexOf("http") === 0){
+					anc.href = that.getAttribute("url");
+					cache.favicon = root.querySelector(".favicon");
+					cache.favicon.setAttribute("src", "https://www.google.com/s2/favicons?domain=" + anc.host);
 
-				cache.netLocation = root.querySelector(".net-location");
-				cache.netLocation.textContent = '- ' + anc.host;
+					cache.netLocation = root.querySelector(".net-location");
+					cache.netLocation.textContent = '- ' + anc.host;
+				}
 
 
 
@@ -195,6 +203,8 @@
 	}
 
 	function attributeChangedCallback(attrName, oldVal, newVal){
+		console.log("attribute changed", attrName, oldVal, newVal);
+
 		switch(attrName){
 			case "published-date":
 				this.updatePublishDate();
